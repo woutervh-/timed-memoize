@@ -1,12 +1,16 @@
+function simple(args) {
+    return args;
+}
+
 export default function timedMemoize(fn, options = {}) {
-    const {timeout = 0, hot = true} = options;
+    const {timeout = 0, hot = true, resolver = simple} = options;
     const cachedResult = {};
     const last = {};
     const cleanup = {};
 
     return function () {
         const now = +Date.now();
-        const key = [...arguments];
+        const key = resolver([...arguments]);
 
         function cleanupCallback() {
             delete cachedResult[key];
