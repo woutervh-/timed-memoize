@@ -1,27 +1,30 @@
 import memoize from '../src/index';
 
-memoize('foo', 0xF00);
-if (memoize('foo') !== 0xF00) {
+const shortMemory = memoize();
+const longMemory = memoize({timeout: 100, hot: false});
+
+shortMemory('foo', 0xF00);
+if (shortMemory('foo') !== 0xF00) {
     throw new Error('Test failed.');
 }
 
 setTimeout(() => {
-    if (typeof memoize('foo') !== 'undefined') {
+    if (typeof shortMemory('foo') !== 'undefined') {
         throw new Error('Test failed.');
     }
 }, 0);
 
 setTimeout(() => {
-    memoize('foo', 'baz', {timeout: 100});
+    longMemory('foo', 'baz');
 
     setTimeout(() => {
-        if (memoize('foo') !== 'baz') {
+        if (longMemory('foo') !== 'baz') {
             throw new Error('Test failed.');
         }
     }, 50);
 
     setTimeout(() => {
-        if (typeof memoize('foo') !== 'undefined') {
+        if (typeof longMemory('foo') !== 'undefined') {
             throw new Error('Test failed.');
         }
     }, 150);

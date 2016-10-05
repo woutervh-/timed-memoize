@@ -32,25 +32,21 @@ function memoized(fn, cache, last, cleanup, options) {
     };
 }
 
-export default function timedMemoize(a, b, c) {
+export default function timedMemoize(a, b) {
     if (typeof a === 'function') {
         // Memoized function value
         const fn = a;
-        const options = b;
+        const options = b || {};
         const cache = {};
         const last = {};
         const cleanup = {};
         return memoized(fn, cache, last, cleanup, options);
-    } else if (typeof a === 'string' && arguments.length >= 2) {
-        // Setting a value to global
-        const key = a;
-        const value = b;
-        const options = c;
-        memoized(() => value, globalCache, globalLast, globalCleanup, {...options, resolver: args => key})();
-    } else if (typeof a === 'string' && arguments.length === 1) {
-        // Getting a value from global
-        const key = a;
-        return memoized(() => undefined, globalCache, globalLast, globalCleanup, {resolver: args => key})();
+    } else if (typeof a === 'object' || arguments.length === 0) {
+        const options = a || {};
+        const cache = {};
+        const last = {};
+        const cleanup = {};
+        return memoized((x, y) => y, cache, last, cleanup, {...options, resolver: args => args[0]});
     } else {
         throw new Error('Invalid arguments');
     }
