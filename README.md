@@ -47,10 +47,10 @@ setTimeout(() => console.log(myHeavyComputationMemoized(9)), 600); // 3, cache m
 // ...
 
 const myHotAndHeavyComputation = timedMemoize(myHeavyComputation, {timeout: 500, hot: true});
-setTimeout(() => console.log(myHotAndHeavyComputation(9)), 0); // 3, cache miss
-setTimeout(() => console.log(myHotAndHeavyComputation(9)), 300); // 3, cache hit
-setTimeout(() => console.log(myHotAndHeavyComputation(9)), 600); // 3, cache hit
-setTimeout(() => console.log(myHotAndHeavyComputation(9)), 1200); // 3, cache miss
+setTimeout(() => console.log(myHotAndHeavyComputation(16)), 0); // 4, cache miss
+setTimeout(() => console.log(myHotAndHeavyComputation(16)), 300); // 4, cache hit
+setTimeout(() => console.log(myHotAndHeavyComputation(16)), 600); // 4, cache hit
+setTimeout(() => console.log(myHotAndHeavyComputation(16)), 1200); // 4, cache miss
 ```
 
 ## Installation
