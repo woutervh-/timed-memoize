@@ -68,8 +68,8 @@ function mySideEffect(x, y) {
     return x + 1;
 }
 const mySideEffectWithUnimportantArguments = timedMemoize(mySideEffect, {resolver: args => args[0]});
-console.log(myHeavyComputationMemoized(1, 'foo')); // 2, cache miss
-console.log(myHeavyComputationMemoized(1, 'bar')); // 2, cache hit
+console.log(mySideEffectWithUnimportantArguments(1, 'foo')); // 2, cache miss
+console.log(mySideEffectWithUnimportantArguments(1, 'bar')); // 2, cache hit
 ```
 
 ## Installation
