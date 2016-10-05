@@ -1,0 +1,2 @@
+# timed-memoize
+Timed memoize
