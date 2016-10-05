@@ -50,7 +50,7 @@ export default function timedMemoize(a, b, c) {
     } else if (typeof a === 'string' && arguments.length === 1) {
         // Getting a value from global
         const key = a;
-        return globalCache[key];
+        return memoized(() => undefined, globalCache, globalLast, globalCleanup, {...options, resolver: args => key})();
     } else {
         throw new Error('Invalid arguments');
     }
