@@ -17,8 +17,8 @@ const memoizedFunction = memoize(myFunction [, options]);
 memoizedFunction('foo');
 
  // Memoize using a global cache
-memoize(key, value); 
-memoize(key); 
+memoize(key, value [, options]);
+memoize(key);
 ```
 
 Tiny library that wraps a function to memoize its return values when given specific arguments.

@@ -41,13 +41,13 @@ export default function timedMemoize(a, b, c) {
         const last = {};
         const cleanup = {};
         return memoized(fn, cache, last, cleanup, options);
-    } else if (typeof a === 'string' && typeof b === 'string') {
+    } else if (typeof a === 'string' && arguments.length >= 2) {
         // Setting a value to global
         const key = a;
         const value = b;
         const options = c;
         memoized(() => value, globalCache, globalLast, globalCleanup, {...options, resolver: args => key})();
-    } else if (typeof a === 'string') {
+    } else if (typeof a === 'string' && arguments.length === 1) {
         // Getting a value from global
         const key = a;
         return globalCache[key];

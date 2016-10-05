@@ -1,7 +1,7 @@
 import memoize from '../src/index';
 
-memoize('foo', 'bar');
-if (memoize('foo') !== 'bar') {
+memoize('foo', 0xF00);
+if (memoize('foo') !== 0xF00) {
     throw new Error('Test failed.');
 }
 
