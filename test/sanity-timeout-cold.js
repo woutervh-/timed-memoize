@@ -1,6 +1,6 @@
 import shallowEqual from 'shallowequal';
 import throwError from './throw-error';
-import timedMemoize from '../src/index';
+import memoize from '../src/index';
 
 const calls = [[], []];
 const counters = [0, 0];
@@ -9,7 +9,7 @@ function myFunction(i, x) {
     return counters[i]++;
 }
 
-const myFunctionMemoized = timedMemoize(myFunction, {timeout: 500, hot: false});
+const myFunctionMemoized = memoize(myFunction, {timeout: 500, hot: false});
 
 const promises = [[], []];
 const timeouts = [0, 300, 600, 900, 1200];

@@ -2,24 +2,25 @@ function simple(args) {
     return args;
 }
 
-export default function timedMemoize(fn, options = {}) {
+const globalCache = {};
+const globalLast = {};
+const globalCleanup = {};
+
+function memoized(fn, cache, last, cleanup, options) {
     const {timeout = 0, hot = true, resolver = simple} = options;
-    const cachedResult = {};
-    const last = {};
-    const cleanup = {};
 
     return function () {
         const now = +Date.now();
         const key = resolver([...arguments]);
 
         function cleanupCallback() {
-            delete cachedResult[key];
+            delete cache[key];
             delete last[key];
             delete cleanup[key];
         }
 
-        if (!(key in cachedResult)) {
-            cachedResult[key] = fn.apply(null, arguments);
+        if (!(key in cache)) {
+            cache[key] = fn.apply(null, arguments);
             last[key] = now;
             cleanup[key] = setTimeout(cleanupCallback, timeout);
         } else if (hot) {
@@ -27,6 +28,30 @@ export default function timedMemoize(fn, options = {}) {
             cleanup[key] = setTimeout(cleanupCallback, timeout);
         }
 
-        return cachedResult[key];
+        return cache[key];
+    };
+}
+
+export default function timedMemoize(a, b, c) {
+    if (typeof a === 'function') {
+        // Memoized function value
+        const fn = a;
+        const options = b;
+        const cache = {};
+        const last = {};
+        const cleanup = {};
+        return memoized(fn, cache, last, cleanup, options);
+    } else if (typeof a === 'string' && typeof b === 'string') {
+        // Setting a value to global
+        const key = a;
+        const value = b;
+        const options = c;
+        memoized(() => value, globalCache, globalLast, globalCleanup, {...options, resolver: args => key})();
+    } else if (typeof a === 'string') {
+        // Getting a value from global
+        const key = a;
+        return globalCache[key];
+    } else {
+        throw new Error('Invalid arguments');
     }
 }

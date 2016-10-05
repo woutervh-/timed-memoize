@@ -1,5 +1,5 @@
 import shallowEqual from 'shallowequal';
-import timedMemoize from '../src/index';
+import memoize from '../src/index';
 
 const calls = [[], []];
 let counter = 0;
@@ -9,7 +9,7 @@ function myFunction(x, y) {
     return counter++;
 }
 
-const myFunctionMemoized = timedMemoize(myFunction, {resolver: args => args[0]});
+const myFunctionMemoized = memoize(myFunction, {resolver: args => args[0]});
 const returnValues = [
     myFunctionMemoized(1, 2),
     myFunctionMemoized(1, 3),
