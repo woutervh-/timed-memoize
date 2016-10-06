@@ -2,10 +2,6 @@ function simple(args) {
     return args;
 }
 
-const globalCache = {};
-const globalLast = {};
-const globalCleanup = {};
-
 function memoized(fn, cache, last, cleanup, options) {
     const {timeout = 0, hot = true, resolver = simple} = options;
 
