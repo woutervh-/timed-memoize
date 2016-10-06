@@ -4,8 +4,10 @@ Timed memoize.
 [npm-image]: https://img.shields.io/npm/v/timed-memoize.svg
 [npm-url]: https://npmjs.org/package/timed-memoize
 [downloads-image]: https://img.shields.io/npm/dm/timed-memoize.svg
+[travis-url]: https://travis-ci.org/woutervh-/timed-memoize
+[travis-image]: https://travis-ci.org/woutervh-/timed-memoize.svg?branch=master
 
-[![npm][npm-image]][npm-url] [![downloads][downloads-image]][npm-url]
+[![npm][npm-image]][npm-url] [![downloads][downloads-image]][npm-url] [![Build Status](travis-image)](travis-url)
 
 ## Basic usage
 
