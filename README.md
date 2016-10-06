@@ -16,8 +16,8 @@ import memoize from 'timed-memoize';
 const memoizedFunction = memoize(myFunction [, options]);
 memoizedFunction('foo');
 
- // Memoize using key/value pairs
- const memory = memoize([options]);
+// Memoize using key/value pairs
+const memory = memoize([options]);
 memory(key, value [, options]);
 memory(key);
 ```
