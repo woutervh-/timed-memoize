@@ -26,6 +26,7 @@
     "babel-cli": "^6.16.0",
     "babel-preset-es2015": "^6.16.0",
     "babel-preset-stage-1": "^6.16.0",
+    "heap": "^0.2.6",
     "shallowequal": "^0.2.2"
   }
 }

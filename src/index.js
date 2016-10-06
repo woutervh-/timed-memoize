@@ -6,7 +6,7 @@ function memoized(fn, cache, last, cleanup, options) {
     const {timeout = 0, hot = true, resolver = simple} = options;
 
     return function () {
-        const now = +Date.now();
+        const now = Date.now();
         const key = resolver([...arguments]);
 
         function cleanupCallback() {
