@@ -7,7 +7,7 @@ Timed memoize.
 [travis-url]: https://travis-ci.org/woutervh-/timed-memoize
 [travis-image]: https://travis-ci.org/woutervh-/timed-memoize.svg?branch=master
 
-[![npm][npm-image]][npm-url] [![downloads][downloads-image]][npm-url] [![Build Status](travis-image)](travis-url)
+[![npm][npm-image]][npm-url] [![downloads][downloads-image]][npm-url] [![Build Status][travis-image][travis-url]
 
 ## Basic usage
 
