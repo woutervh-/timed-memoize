@@ -1,5 +1,5 @@
 import shallowEqual from 'shallowequal';
-import memoize from '../src/index';
+import memoize from '../lib/index';
 
 const calls = [[], []];
 let counter = 0;

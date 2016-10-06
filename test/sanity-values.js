@@ -1,4 +1,4 @@
-import memoize from '../src/index';
+import memoize from '../lib/index';
 
 const shortMemory = memoize();
 const longMemory = memoize({timeout: 100, hot: false});
