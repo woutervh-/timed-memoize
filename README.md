@@ -112,7 +112,7 @@ console.log(mySideEffectWithUnimportantArguments(1, 'foo')); // 2, cache miss
 console.log(mySideEffectWithUnimportantArguments(1, 'bar')); // 2, cache hit
 
 // Storing and retrieving key/value pairs
-const memory = memoize({timeout: 50});
+const memory = memoize({timeout: 50, hot: false});
 memory('foo', 'bar');
 console.log(memory('foo')); // bar
 setTimeout(() => console.log(memory('foo')), 25); // bar
