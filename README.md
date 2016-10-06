@@ -55,9 +55,9 @@ Function whose return values to memoize.
 * `options` (default: `{}`):
     An object with the following options:
     * `timeout` (default: `0`):
-    The amount of time in milliseconds to keep the function's return value in cache for.
+    The amount of time in milliseconds to keep the key/value pair in cache for.
     * `hot` (default: `true`):
-    If enabled, keeps track of when the last call to the function was made (with the arguments supplied); it then makes sure the cache is kept for an additional `timeout` amount of time.
+    If enabled, keeps track of when the last request for the value was made; it then makes sure the cache is kept for an additional `timeout` amount of time.
     This helps keeping the cache alive for frequently used values.
 
 Returns a function that can be used to set key/value pairs, and can return the cached values.
