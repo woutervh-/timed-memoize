@@ -39,7 +39,7 @@ let counter = 0;
             delete heapItemMap[id];
         }
     }
-})(Function('return this')());
+})(new Function('return this')());
 
 const startTime = Date.now();
 Date.now = function () {
