@@ -47,6 +47,8 @@ Function whose return values to memoize.
     * `resolver` (default: `args => args`):
     A function that accepts a single array and transforms it into a key.
     The returned key can be anything that can be used as a key in standard JavaScript objects.
+    * `discardUndefined` (default: `false`):
+    If the underlying function returns `undefined`, then don't cache the value and re-evaluate the function on the next call.
  
  Returns a function that can be invoked like the underlying function, but returns cached results.
  
@@ -67,7 +69,7 @@ const memory = memoize(options);
 ```
 *is equivalent to*
 ```js
-const memory = memoize((x, y) => y, {...options, resolver: args => args[0]});
+const memory = memoize((x, y) => y, {...options, resolver: args => args[0], discardUndefined: true});
 ```
 
 ## Examples

@@ -3,7 +3,7 @@ function simple(args) {
 }
 
 function memoized(fn, cache, last, cleanup, options) {
-    const {timeout = 0, hot = true, resolver = simple} = options;
+    const {timeout = 0, hot = true, discardUndefined = false, resolver = simple} = options;
 
     return function () {
         const now = Date.now();
@@ -16,9 +16,12 @@ function memoized(fn, cache, last, cleanup, options) {
         }
 
         if (!(key in cache)) {
-            cache[key] = fn.apply(null, arguments);
-            last[key] = now;
-            cleanup[key] = setTimeout(cleanupCallback, timeout);
+            const returnValue = fn.apply(null, arguments);
+            if (!discardUndefined || typeof returnValue !== 'undefined') {
+                cache[key] = returnValue;
+                last[key] = now;
+                cleanup[key] = setTimeout(cleanupCallback, timeout);
+            }
         } else if (hot) {
             clearTimeout(cleanup[key]);
             cleanup[key] = setTimeout(cleanupCallback, timeout);
@@ -42,7 +45,7 @@ export default function timedMemoize(a, b) {
         const cache = {};
         const last = {};
         const cleanup = {};
-        return memoized((x, y) => y, cache, last, cleanup, {...options, resolver: args => args[0]});
+        return memoized((x, y) => y, cache, last, cleanup, {...options, resolver: args => args[0], discardUndefined: true});
     } else {
         throw new Error('Invalid arguments');
     }

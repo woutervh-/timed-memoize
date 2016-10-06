@@ -3,6 +3,9 @@ import memoize from '../src/index';
 const shortMemory = memoize();
 const longMemory = memoize({timeout: 100, hot: false});
 
+if (typeof shortMemory('foo') !== 'undefined') {
+    throw new Error('Test failed.');
+}
 shortMemory('foo', 0xF00);
 if (shortMemory('foo') !== 0xF00) {
     throw new Error('Test failed.');
