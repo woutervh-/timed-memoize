@@ -16,12 +16,12 @@ import memoize from 'timed-memoize';
 
 // Memoize function return values
 const memoizedFunction = memoize(myFunction [, options]);
-memoizedFunction('foo');
+memoizedFunction('foo'); // returns myFucntion('foo'), saves the value in memory for later use
 
 // Memoize using key/value pairs
 const memory = memoize([options]);
-memory(key, value [, options]);
-memory(key);
+memory(key, value); // sets 'key' to 'value'
+memory(key); // gets the value
 ```
 
 Tiny library that wraps a function to memoize its return values when given specific arguments.
