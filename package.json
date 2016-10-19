@@ -1,6 +1,6 @@
 {
   "name": "timed-memoize",
-  "version": "2.1.7",
+  "version": "2.1.8",
   "description": "Timed memoize",
   "main": "lib/index.js",
   "scripts": {
