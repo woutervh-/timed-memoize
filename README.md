@@ -31,7 +31,7 @@ Optionally you can specify how to resolve the arguments to a key that is used in
 
 It is also possible to memoize key/value pairs using a cache.
 
-Works in browsers and Node.js.
+Works in browsers and Node.js (UMD build accessible from `lib/index.js`).
 
 ## Options
 
@@ -125,6 +125,14 @@ setTimeout(() => console.log(memory('foo')), 75); // undefined
 
 ## Installation
 
+The `lib/index.js` file is a UMD build.
+
+**Node**
+
 ```bash
 npm install --save timed-memoize
 ```
+
+**Browser**
+
+After including `lib/index.js` with a `<script>` tag the library is available from the global `timedMemoize`.
