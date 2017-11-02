@@ -9,12 +9,12 @@ function simple(args: any[]): string {
     return args.toString();
 }
 
-function memoized<T>(fn: (...args: any[]) => T, cache: {[key: string]: T}, cleanup: {[key: string]: number}, options: Options): () => T {
+function memoized<T>(fn: (...args: any[]) => T, cache: {[key: string]: T}, cleanup: {[key: string]: number}, options: Options): (...args: any[]) => T {
     const {timeout = 0, hot = true, discardUndefined = false, resolver = simple} = options;
 
-    return function () {
+    return function (...args: any[]) {
         const now = Date.now();
-        const key = resolver(Array.from(arguments));
+        const key = resolver(args);
 
         function cleanupCallback() {
             delete cache[key];
@@ -36,7 +36,7 @@ function memoized<T>(fn: (...args: any[]) => T, cache: {[key: string]: T}, clean
     };
 }
 
-export default function timedMemoize<T>(a?: ((...args: any[]) => T) | Options, b?: Options): () => T {
+export default function timedMemoize<T>(a?: ((...args: any[]) => T) | Options, b?: Options): (...args: any[]) => T {
     if (typeof a === 'function') {
         // Memoized function value
         const fn = a;
