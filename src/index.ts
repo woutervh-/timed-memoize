@@ -39,11 +39,11 @@ function memoized<T, F extends (...args: any[]) => T>(fn: F, cache: {[key: strin
     } as F;
 }
 
-function timedMemoize<T>(a: ((...args: any[]) => T), b?: Options): (...args: any[]) => T;
+function timedMemoize<T, F extends () => T>(func: F, options?: Options): F;
 
-function timedMemoize<T>(a?: Options): (key: string, value?: T) => T | undefined;
+function timedMemoize<T>(options?: Options): (key: string, value?: T) => T | undefined;
 
-function timedMemoize<T>(a?: ((...args: any[]) => T) | Options, b?: Options): ((...args: any[]) => T) | ((key: string, value?: T) => T | undefined) {
+function timedMemoize<T, F extends () => T>(a?: F | Options, b?: Options): F | ((key: string, value?: T) => T | undefined) {
     if (typeof a === 'function') {
         // Memoized function value
         const fn = a;

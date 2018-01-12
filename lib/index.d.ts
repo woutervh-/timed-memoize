@@ -4,6 +4,6 @@ export interface Options {
     discardUndefined?: boolean;
     resolver?: (args: any[]) => string;
 }
-declare function timedMemoize<T>(a: ((...args: any[]) => T), b?: Options): (...args: any[]) => T;
-declare function timedMemoize<T>(a?: Options): (key: string, value?: T) => T | undefined;
+declare function timedMemoize<T, F extends () => T>(func: F, options?: Options): F;
+declare function timedMemoize<T>(options?: Options): (key: string, value?: T) => T | undefined;
 export default timedMemoize;
