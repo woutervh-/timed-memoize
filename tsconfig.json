@@ -1,8 +1,6 @@
 {
     "compilerOptions": {
       "moduleResolution": "node",
-      "target": "es5",
-      "module": "umd",
       "lib": [
         "es2015",
         "es2016",
@@ -15,8 +13,6 @@
       "allowSyntheticDefaultImports": false,
       "experimentalDecorators": true,
       "emitDecoratorMetadata": true,
-      "declarationDir": "lib",
-      "outDir": "lib",
       "noImplicitAny": true,
       "typeRoots": [
         "node_modules/@types"
