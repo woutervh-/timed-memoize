@@ -52,7 +52,7 @@ Function whose return values to memoize.
     Not used when `one = true`.
     * `discardUndefined` (default: `false`):
     If the underlying function returns `undefined`, then don't cache the value and re-evaluate the function on the next call.
-    * `one` (default: false)
+    * `one` (default: `false`)
     Only ever remember one value.
     When the memoized function is repeatedly called with the same arguments, the cache will hit and the underlying function is not called.
     When the memoized function is called with different arguments, the cache will miss and a new value is cached by calling the underlying function.
