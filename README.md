@@ -42,15 +42,21 @@ Function whose return values to memoize.
 * `options` (default: `{}`):
     An object with the following options:
     * `timeout` (default: `0`):
-    The amount of time in milliseconds to keep the function's return value in cache for.
+    The amount of time in milliseconds to keep the function's return value in cache for. Keeps values indefinitely for `timeout = -1`.
     * `hot` (default: `true`):
     If enabled, keeps track of when the last call to the function was made (with the arguments supplied); it then makes sure the cache is kept for an additional `timeout` amount of time.
     This helps keeping the cache alive for frequently used values.
     * `resolver` (default: `args => args`):
     A function that accepts a single array and transforms it into a key.
     The returned key can be anything that can be used as a key in standard JavaScript objects.
+    Not used when `one = true`.
     * `discardUndefined` (default: `false`):
     If the underlying function returns `undefined`, then don't cache the value and re-evaluate the function on the next call.
+    * `one` (default: false)
+    Only ever remember one value.
+    When the memoized function is repeatedly called with the same arguments, the cache will hit and the underlying function is not called.
+    When the memoized function is called with different arguments, the cache will miss and a new value is cached by calling the underlying function.
+    Note: the arguments are checked shallowly for equality.
  
  Returns a function that can be invoked like the underlying function, but returns cached results.
  
@@ -59,7 +65,7 @@ Function whose return values to memoize.
 * `options` (default: `{}`):
     An object with the following options:
     * `timeout` (default: `0`):
-    The amount of time in milliseconds to keep the key/value pair in cache for.
+    The amount of time in milliseconds to keep the key/value pair in cache for. Keeps values indefinitely for `timeout = -1`.
     * `hot` (default: `true`):
     If enabled, keeps track of when the last request for the value was made; it then makes sure the cache is kept for an additional `timeout` amount of time.
     This helps keeping the cache alive for frequently used values.
@@ -121,6 +127,22 @@ memory('foo', 'bar');
 console.log(memory('foo')); // bar
 setTimeout(() => console.log(memory('foo')), 25); // bar
 setTimeout(() => console.log(memory('foo')), 75); // undefined
+
+// Set timeout to -1, keep this value for ever.
+const memoizeForever = memoize(myHeavyComputation, {timeout: -1});
+setTimeout(() => console.log(memoizeForever(16)), 0); // 4, cache miss
+setTimeout(() => console.log(memoizeForever(16)), 500); // 4, cache hit
+setTimeout(() => console.log(memoizeForever(16)), 500000000000); // 4, cache hit
+
+// Only ever remember one value, change value based on function arguments.
+const memoizeOne = memoize(myHeavyComputation, {one: -1});
+memoizeOne(16); // 4, cache miss
+memoizeOne(16); // 4, cache hit
+memoizeOne(16); // 4, cache hit
+memoizeOne(25); // 5, cache miss
+memoizeOne(25); // 5, cache hit
+memoizeOne(16); // 4, cache miss
+memoizeOne(16); // 4, cache hit
 ```
 
 ## Installation
