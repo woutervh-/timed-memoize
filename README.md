@@ -135,7 +135,7 @@ setTimeout(() => console.log(memoizeForever(16)), 500); // 4, cache hit
 setTimeout(() => console.log(memoizeForever(16)), 500000000000); // 4, cache hit
 
 // Only ever remember one value, change value based on function arguments.
-const memoizeOne = memoize(myHeavyComputation, {one: -1});
+const memoizeOne = memoize(myHeavyComputation, {one: true});
 memoizeOne(16); // 4, cache miss
 memoizeOne(16); // 4, cache hit
 memoizeOne(16); // 4, cache hit
