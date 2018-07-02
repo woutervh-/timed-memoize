@@ -1,4 +1,4 @@
-import memoize from '../lib-es5/index';
+import memoize from '../lib/es5/index';
 
 const shortMemory = memoize();
 const longMemory = memoize({timeout: 100, hot: false});

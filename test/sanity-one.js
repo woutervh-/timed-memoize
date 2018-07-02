@@ -1,4 +1,4 @@
-import memoize from '../lib-es5/index';
+import memoize from '../lib/es5/index';
 
 let calls = 0;
 const computation = (value) => {

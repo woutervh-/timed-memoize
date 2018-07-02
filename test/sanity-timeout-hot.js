@@ -1,6 +1,6 @@
 import shallowEqual from 'shallowequal';
 import throwError from './throw-error';
-import memoize from '../lib-es5/index';
+import memoize from '../lib/es5/index';
 
 const calls = [];
 let counter = 0;

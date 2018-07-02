@@ -2,16 +2,18 @@
   "name": "timed-memoize",
   "version": "2.4.1",
   "description": "Timed memoize",
-  "main": "lib-es5/index.js",
-  "module": "lib-es6/index.js",
-  "types": "lib-es6/index.d.ts",
+  "main": "lib/es5/index.js",
+  "module": "lib/es6/index.js",
+  "types": "lib/es6/index.d.ts",
   "files": [
-    "lib-*"
+    "src",
+    "lib"
   ],
   "scripts": {
-    "build:es5": "tsc --target ES5 --module CommonJS --outDir lib-es5 --declarationDir lib-es5",
-    "build:es6": "tsc --target ES6 --module ES6 --outDir lib-es6 --declarationDir lib-es6",
-    "build": "npm run build:es5 && npm run build:es6",
+    "build:clean": "rimraf lib",
+    "build:es5": "tsc --target es5 --module commonjs --outDir lib/es5 --declarationDir lib/es5",
+    "build:es6": "tsc --target es6 --module es6 --outDir lib/es6 --declarationDir lib/es6",
+    "build": "npm run build:clean && npm run build:es5 && npm run build:es6",
     "test": "npm run build && babel-node test/sanity.js --source-maps"
   },
   "repository": {
@@ -35,6 +37,7 @@
     "babel-preset-es2015": "^6.16.0",
     "babel-preset-stage-1": "^6.16.0",
     "heap": "^0.2.6",
+    "rimraf": "^2.6.2",
     "shallowequal": "^0.2.2",
     "typescript": "^2.9.2"
   }

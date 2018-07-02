@@ -5,4 +5,4 @@ node_modules/
 *.log
 
 # Build output
-lib-*/
+lib/
