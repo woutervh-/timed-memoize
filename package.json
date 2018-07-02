@@ -1,6 +1,6 @@
 {
   "name": "timed-memoize",
-  "version": "2.4.1",
+  "version": "2.4.2",
   "description": "Timed memoize",
   "main": "lib/es5/index.js",
   "module": "lib/es6/index.js",
