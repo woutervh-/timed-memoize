@@ -39,6 +39,6 @@
     "heap": "^0.2.6",
     "rimraf": "^2.6.2",
     "shallowequal": "^0.2.2",
-    "typescript": "^2.9.2"
+    "typescript": "^4.2.4"
   }
 }
